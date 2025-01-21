@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterLoginController extends Controller
 {
@@ -14,7 +16,29 @@ class RegisterLoginController extends Controller
 
   public function register(Request $request)
   {
-    dd($request);
+    $request->validate([
+      'email' => 'required|email|string|unique:users,email',
+      'password' => 'required|min:6|string|max:16|confirmed',
+    ]);
+
+    User::create([
+      'email' => $request->email,
+      'password' => bcrypt($request->password),
+    ]);
+
+    $credentials = $request->only('email', 'password');
+
+    if (Auth::attempt($credentials, true)) {
+      $request
+        ->session()
+        ->regenerate();
+      return redirect('/');
+    }
+
+    return redirect()
+      ->back()
+      ->withInput()
+      ->withErrors(["email" => "Invalid credentials"]);
   }
 
   public function edit()
@@ -22,5 +46,31 @@ class RegisterLoginController extends Controller
     return view('pages.login');
   }
 
-  public function login() {}
+  public function login(Request $request)
+  {
+    $request->validate([
+      'email' => 'required|email|string|exists:users,email',
+      'password' => 'required|string',
+    ]);
+
+    $credentials = $request->only('email', 'password');
+
+    if (Auth::attempt($credentials, true)) {
+      $request
+        ->session()
+        ->regenerate();
+      return redirect('/');
+    }
+
+    return redirect()
+      ->back()
+      ->withInput()
+      ->withErrors(["email" => "Invalid credentials"]);
+  }
+
+  public function logout()
+  {
+    Auth::logout();
+    return redirect('/');
+  }
 }

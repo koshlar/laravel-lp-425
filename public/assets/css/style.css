@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  font-family: "Inter";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  color: #fff;
+  background: #181818;
+  font-size: 1rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+button,
+.button {
+  border: none;
+  outline: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background: #6d6fea;
+  transition: 0.25s ease-out;
+}
+
+button:hover,
+.button:hover {
+  background: #5759dc;
+  transition: 0.01s ease-out;
+}
+
+button:active,
+.button:active {
+  background: #adaeec;
+}
+
+.product-card {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background: #343434;
+}
+
+header {
+  padding: 0 1rem;
+}
+
+.header__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.header__buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.input_container+.input_container {
+  margin-top: 0.5rem;
+}
+
+input {
+  padding: 0.5rem 0.7rem;
+  border: 1px solid #1f1f1f;
+  background: none;
+  border-radius: 0.35rem;
+  outline: none;
+}
+
+input:focus {
+  border: 1px solid #454545;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.1rem;
+}

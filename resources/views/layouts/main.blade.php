@@ -5,17 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <title>Title</title>
 </head>
 
 <body>
-    <header>
-        <h1>Logo</h1>
-    </header>
+    @include('components.Header')
     @yield('content')
-    <footer>
-        <h1>Footer</h1>
-    </footer>
 </body>
 
 </html>

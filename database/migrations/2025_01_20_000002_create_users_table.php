@@ -20,6 +20,8 @@ return new class extends Migration
         ->nullable()
         ->constrained('user_roles')
         ->nullOnDelete();
+      $table->rememberToken();
+      $table->timestamp('email_verified_at')->nullable();
       $table->timestamps();
     });
   }
