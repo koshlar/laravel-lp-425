@@ -11,7 +11,7 @@ class RegisterLoginController extends Controller
 {
   public function create()
   {
-    return view('pages.register');
+    return view('pages.auth.register');
   }
 
   public function register(Request $request)
@@ -43,7 +43,7 @@ class RegisterLoginController extends Controller
 
   public function edit()
   {
-    return view('pages.login');
+    return view('pages.auth.login');
   }
 
   public function login(Request $request)

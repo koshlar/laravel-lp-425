@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisterLoginController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,3 +37,5 @@ Route::controller(RegisterLoginController::class)
       Route::post('/logout', 'logout')->name('logout');
     }
   );
+
+Route::resource('products', ProductController::class);

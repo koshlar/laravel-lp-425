@@ -39,12 +39,6 @@ button:active,
   background: #adaeec;
 }
 
-.product-card {
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  background: #343434;
-}
-
 header {
   padding: 0 1rem;
 }
@@ -86,4 +80,49 @@ h1 {
 h2 {
   font-size: 1.5rem;
   margin-bottom: 1.1rem;
+}
+
+.products__wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 1rem;
+  row-gap: 1rem;
+}
+
+.catalog__wrapper {
+  margin-top: 1rem;
+}
+
+.product_card {
+  border-radius: 0.5rem;
+  background: #1e1e1e;
+  border: 1px solid #404040;
+}
+
+.product_card__cover {
+  border-radius: 0.5rem;
+}
+
+.product_card__title {
+  font-size: 1.1rem;
+  margin-top: 0.75rem;
+}
+
+.product_card__price {
+  font-size: 1.35rem;
+  margin-top: 1rem;
+  font-weight: 700;
+}
+
+.product_card__button {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.product_card__content {
+  padding: 0.5rem;
+}
+
+.catalog {
+  margin-top: 1rem;
 }
