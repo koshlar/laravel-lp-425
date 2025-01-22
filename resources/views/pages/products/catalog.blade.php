@@ -18,6 +18,16 @@
                                 @csrf
                                 <button class="product_card__button" type="submit">Add to cart</button>
                             </form>
+                            <div class="product_card__admin_buttons">
+                                <a href="{{ route('products.edit', ['product' => $item->id]) }}" class="button">
+                                    Edit
+                                </a>
+                                <form action="{{ route('products.destroy', ['product' => $item->id]) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </div>
                         </div>
                     </article>
                 @endforeach

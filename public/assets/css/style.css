@@ -20,9 +20,13 @@
 
 button,
 .button {
+  display: flex;
+  width: fit-content !important;
+  align-items: center;
+  justify-content: center;
   border: none;
   outline: none;
-  padding: 0.5rem 0.75rem;
+  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   background: #6d6fea;
   transition: 0.25s ease-out;
@@ -130,16 +134,66 @@ h2 {
   margin-top: 1rem;
 }
 
-.product {}
+.product {
+  padding-top: 2rem;
+}
 
 .product__content {}
 
-.product__title {}
+.product__container {
+  display: grid;
+  grid-template-columns: 500px 1fr;
+  column-gap: 1.5rem;
+}
 
-.product__price {}
+.product__cover {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 1rem;
+}
 
-.product__button {}
+.product__title {
+  font-size: 4rem;
+  font-weight: 700;
+}
 
-.product__info {}
+.product__price {
+  margin-top: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
 
-.product__description {}
+.product__button {
+  margin-top: 4rem;
+  width: 350px;
+}
+
+.product__info {
+  padding-top: 4rem;
+}
+
+.product__description {
+  font-size: 1.35rem;
+  color: #c4c4c4;
+  margin-top: 1rem;
+}
+
+.product__admin_buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.product_card__admin_buttons {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.product_card__admin_buttons .button,
+button {
+  width: 100%;
+}

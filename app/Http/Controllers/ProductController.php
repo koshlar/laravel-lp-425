@@ -54,7 +54,7 @@ class ProductController extends Controller
       // 'product_category_id' => $request->product_category_id,
     ]);
 
-    return redirect('/');
+    return redirect(route('products.index'));
   }
 
   public function edit($id)
@@ -98,7 +98,7 @@ class ProductController extends Controller
       // 'product_category_id' => $request->product_category_id,
     ]);
 
-    return redirect('/');
+    return redirect(route('products.index'));
   }
 
   public function destroy($id)
@@ -111,6 +111,6 @@ class ProductController extends Controller
 
     $product->delete();
 
-    return redirect('/');
+    return redirect(route('products.index'));
   }
 }
