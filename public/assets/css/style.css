@@ -21,7 +21,7 @@
 button,
 .button {
   display: flex;
-  width: fit-content !important;
+  width: fit-content;
   align-items: center;
   justify-content: center;
   border: none;
@@ -44,7 +44,7 @@ button:active,
 }
 
 header {
-  padding: 0 1rem;
+  padding: 2rem 0;
 }
 
 .header__content {
@@ -58,6 +58,18 @@ header {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+}
+
+.header__links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header__user_buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .input_container+.input_container {
@@ -78,12 +90,10 @@ input:focus {
 
 h1 {
   font-size: 2rem;
-  margin-bottom: 1.5rem;
 }
 
 h2 {
   font-size: 1.5rem;
-  margin-bottom: 1.1rem;
 }
 
 .products__wrapper {
@@ -94,7 +104,13 @@ h2 {
 }
 
 .catalog__wrapper {
-  margin-top: 1rem;
+  margin-top: 2rem;
+}
+
+.catalog__title {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 
 .product_card {
@@ -131,7 +147,7 @@ h2 {
 }
 
 .catalog {
-  margin-top: 1rem;
+  margin-top: 3rem;
 }
 
 .product {
@@ -194,6 +210,6 @@ h2 {
 }
 
 .product_card__admin_buttons .button,
-button {
+.product_card__admin_buttons button {
   width: 100%;
 }

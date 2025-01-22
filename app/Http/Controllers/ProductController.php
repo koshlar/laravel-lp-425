@@ -79,8 +79,8 @@ class ProductController extends Controller
         Storage::disk("public")->makeDirectory('images/products');
       }
 
-      if (Storage::disk('public')->exists('/images/products' . $product->cover)) {
-        Storage::disk('public')->delete('/images/products' . $product->cover);
+      if (Storage::disk('public')->exists('images/products/' . $product->cover)) {
+        Storage::disk('public')->delete('images/products/' . $product->cover);
       }
 
       $image = $request->file('cover');
@@ -105,8 +105,8 @@ class ProductController extends Controller
   {
     $product = Product::findOrFail($id);
 
-    if (Storage::disk('public')->exists('/images/products' . $product->cover)) {
-      Storage::disk('public')->delete('/images/products' . $product->cover);
+    if (Storage::disk('public')->exists('images/products/' . $product->cover)) {
+      Storage::disk('public')->delete('images/products/' . $product->cover);
     }
 
     $product->delete();

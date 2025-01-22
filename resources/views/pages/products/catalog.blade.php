@@ -3,7 +3,12 @@
 @section('content')
     <div class="catalog">
         <div class="container">
-            <h1>Catalog</h1>
+            <div class="catalog__title">
+                <h1>Catalog</h1>
+                <a href="{{ route('products.create') }}" class="button">
+                    Add product
+                </a>
+            </div>
             <div class="products__wrapper catalog__wrapper">
                 @foreach ($products as $item)
                     <article class="product_card">
