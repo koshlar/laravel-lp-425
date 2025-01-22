@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h1>Create product page!</h1>
-        <form action="{{ route('products.store') }}" method="post">
+        <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             @include('components.Input', [
                 'name' => 'cover',

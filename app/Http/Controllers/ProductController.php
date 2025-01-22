@@ -27,7 +27,7 @@ class ProductController extends Controller
   public function store(Request $request)
   {
     $request->validate([
-      'cover' => 'required|image|mimes:png,jpg,jpeg,webp|size:3000',
+      'cover' => 'required|image|mimes:png,jpg,jpeg,webp|max:3000',
       'name' => 'required|string|min:2',
       'price' => 'required|numeric|between:0,1000000',
       'description' => 'nullable|string|max:1500',
@@ -42,7 +42,7 @@ class ProductController extends Controller
       $image = $request->file('cover');
       $filename = uniqid() . '.' . $image->extension();
 
-      Storage::disk("public")->put("/images/products", $filename);
+      Storage::disk("public")->put("images/products/" . $filename, file_get_contents($image));
     }
 
     Product::create([
@@ -50,6 +50,7 @@ class ProductController extends Controller
       'name' => $request->name,
       'price' => $request->price,
       'description' => $request->description,
+      'quantity' => 1,
       // 'product_category_id' => $request->product_category_id,
     ]);
 
