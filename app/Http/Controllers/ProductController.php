@@ -11,12 +11,12 @@ class ProductController extends Controller
 
   public function index()
   {
-    return view('pages.products.catalog');
+    return view('pages.products.catalog', ['products' => Product::all()]);
   }
 
-  public function show()
+  public function show($id)
   {
-    return view('pages.products.show');
+    return view('pages.products.show', ['product' => Product::findOrFail($id)]);
   }
 
   public function create()
@@ -57,36 +57,60 @@ class ProductController extends Controller
     return redirect('/');
   }
 
-  public function edit()
+  public function edit($id)
   {
-    return view('pages.products.login');
+    return view('pages.products.edit', ['product' => Product::findOrFail($id)]);
   }
 
-  public function update(Request $request)
+  public function update(Request $request, $id)
   {
     $request->validate([
-      'email' => 'required|email|string|exists:users,email',
-      'password' => 'required|string',
+      'cover' => 'required|image|mimes:png,jpg,jpeg,webp|max:3000',
+      'name' => 'required|string|min:2',
+      'price' => 'required|numeric|between:0,1000000',
+      'description' => 'nullable|string|max:1500',
+      // 'product_category_id' => 'required|min:6|string|max:16|confirmed',
     ]);
 
-    $credentials = $request->only('email', 'password');
+    $product = Product::findOrFail($id);
 
-    if (Auth::attempt($credentials, true)) {
-      $request
-        ->session()
-        ->regenerate();
-      return redirect('/');
+    if ($request->hasFile('cover')) {
+      if (!Storage::disk("public")->exists('images/products')) {
+        Storage::disk("public")->makeDirectory('images/products');
+      }
+
+      if (Storage::disk('public')->exists('/images/products' . $product->cover)) {
+        Storage::disk('public')->delete('/images/products' . $product->cover);
+      }
+
+      $image = $request->file('cover');
+      $filename = uniqid() . '.' . $image->extension();
+
+      Storage::disk("public")->put("images/products/" . $filename, file_get_contents($image));
     }
 
-    return redirect()
-      ->back()
-      ->withInput()
-      ->withErrors(["email" => "Invalid credentials"]);
+    $product->update([
+      'cover' => $filename,
+      'name' => $request->name,
+      'price' => $request->price,
+      'description' => $request->description,
+      'quantity' => 1,
+      // 'product_category_id' => $request->product_category_id,
+    ]);
+
+    return redirect('/');
   }
 
-  public function destroy()
+  public function destroy($id)
   {
-    Auth::logout();
+    $product = Product::findOrFail($id);
+
+    if (Storage::disk('public')->exists('/images/products' . $product->cover)) {
+      Storage::disk('public')->delete('/images/products' . $product->cover);
+    }
+
+    $product->delete();
+
     return redirect('/');
   }
 }

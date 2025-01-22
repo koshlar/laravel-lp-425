@@ -97,10 +97,13 @@ h2 {
   border-radius: 0.5rem;
   background: #1e1e1e;
   border: 1px solid #404040;
+  overflow: hidden;
 }
 
 .product_card__cover {
-  border-radius: 0.5rem;
+
+  width: 100%;
+  aspect-ratio: 1/1;
 }
 
 .product_card__title {
@@ -126,3 +129,17 @@ h2 {
 .catalog {
   margin-top: 1rem;
 }
+
+.product {}
+
+.product__content {}
+
+.product__title {}
+
+.product__price {}
+
+.product__button {}
+
+.product__info {}
+
+.product__description {}
