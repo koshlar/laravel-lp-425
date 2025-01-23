@@ -17,16 +17,18 @@
                         <button class="product__button" type="submit">Add to cart</button>
                     </form>
 
-                    <div class="product__admin_buttons">
-                        <a href="{{ route('products.edit', ['product' => $product->id]) }}" class="button">
-                            Edit
-                        </a>
-                        <form action="{{ route('products.destroy', ['product' => $product->id]) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">Delete</button>
-                        </form>
-                    </div>
+                    @if (auth()->user()->user_role_id == 3)
+                        <div class="product__admin_buttons">
+                            <a href="{{ route('products.edit', ['product' => $product->id]) }}" class="button">
+                                Edit
+                            </a>
+                            <form action="{{ route('products.destroy', ['product' => $product->id]) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">Delete</button>
+                            </form>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

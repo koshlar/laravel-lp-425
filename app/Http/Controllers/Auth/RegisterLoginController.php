@@ -24,6 +24,7 @@ class RegisterLoginController extends Controller
     User::create([
       'email' => $request->email,
       'password' => bcrypt($request->password),
+      'user_role_id' => 2,
     ]);
 
     $credentials = $request->only('email', 'password');

@@ -5,9 +5,11 @@
         <div class="container">
             <div class="catalog__title">
                 <h1>Catalog</h1>
-                <a href="{{ route('products.create') }}" class="button">
-                    Add product
-                </a>
+                @if (auth()->user()->user_role_id == 3)
+                    <a href="{{ route('products.create') }}" class="button">
+                        Add product
+                    </a>
+                @endif
             </div>
             <div class="products__wrapper catalog__wrapper">
                 @foreach ($products as $item)
@@ -23,16 +25,18 @@
                                 @csrf
                                 <button class="product_card__button" type="submit">Add to cart</button>
                             </form>
-                            <div class="product_card__admin_buttons">
-                                <a href="{{ route('products.edit', ['product' => $item->id]) }}" class="button">
-                                    Edit
-                                </a>
-                                <form action="{{ route('products.destroy', ['product' => $item->id]) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit">Delete</button>
-                                </form>
-                            </div>
+                            @if (auth()->user()->user_role_id == 3)
+                                <div class="product_card__admin_buttons">
+                                    <a href="{{ route('products.edit', ['product' => $item->id]) }}" class="button">
+                                        Edit
+                                    </a>
+                                    <form action="{{ route('products.destroy', ['product' => $item->id]) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit">Delete</button>
+                                    </form>
+                                </div>
+                            @endif
                         </div>
                     </article>
                 @endforeach
