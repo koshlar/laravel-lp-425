@@ -31,7 +31,7 @@ class ProductController extends Controller
       'name' => 'required|string|min:2',
       'price' => 'required|numeric|between:0,1000000',
       'description' => 'nullable|string|max:1500',
-      // 'product_category_id' => 'required|min:6|string|max:16|confirmed',
+      // 'product-category_id' => 'required|min:6|string|max:16|confirmed',
     ]);
 
     if ($request->hasFile('cover')) {
@@ -51,7 +51,7 @@ class ProductController extends Controller
       'price' => $request->price,
       'description' => $request->description,
       'quantity' => 1,
-      // 'product_category_id' => $request->product_category_id,
+      // 'product-category_id' => $request->product-category_id,
     ]);
 
     return redirect(route('products.index'));
@@ -69,7 +69,7 @@ class ProductController extends Controller
       'name' => 'required|string|min:2',
       'price' => 'required|numeric|between:0,1000000',
       'description' => 'nullable|string|max:1500',
-      // 'product_category_id' => 'required|min:6|string|max:16|confirmed',
+      // 'product-category_id' => 'required|min:6|string|max:16|confirmed',
     ]);
 
     $product = Product::findOrFail($id);
@@ -95,7 +95,7 @@ class ProductController extends Controller
       'price' => $request->price,
       'description' => $request->description,
       'quantity' => 1,
-      // 'product_category_id' => $request->product_category_id,
+      // 'product-category_id' => $request->product-category_id,
     ]);
 
     return redirect(route('products.index'));

@@ -3,6 +3,9 @@
         <h1>Logo</h1>
         <nav class="header__links">
             <a href="{{ route('products.index') }}">Catalog</a>
+            @if (auth()->check() && auth()->user()->user_role_id == 3)
+                <a href="{{ route('product-categories.index') }}">Categories</a>
+            @endif
         </nav>
         <div class="header__user_buttons">
             @auth

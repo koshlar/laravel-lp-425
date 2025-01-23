@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisterLoginController;
+use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use PhpParser\Node\Expr\FuncCall;
@@ -42,6 +43,9 @@ Route::controller(RegisterLoginController::class)
       });
     }
   );
+
+Route::resource('product-categories', ProductCategoryController::class)
+  ->middleware('admin');
 
 Route::resource('products', ProductController::class)
   ->except(['index', 'show'])

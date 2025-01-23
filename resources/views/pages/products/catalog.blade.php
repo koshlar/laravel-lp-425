@@ -5,9 +5,12 @@
         <div class="container">
             <div class="catalog__title">
                 <h1>Catalog</h1>
-                @if (auth()->user()->user_role_id == 3)
+                @if (auth()->check() && auth()->user()->user_role_id == 3)
                     <a href="{{ route('products.create') }}" class="button">
                         Add product
+                    </a>
+                    <a href="{{ route('product-categories.create') }}" class="button">
+                        Add product category
                     </a>
                 @endif
             </div>
@@ -25,7 +28,7 @@
                                 @csrf
                                 <button class="product_card__button" type="submit">Add to cart</button>
                             </form>
-                            @if (auth()->user()->user_role_id == 3)
+                            @if (auth()->check() && auth()->user()->user_role_id == 3)
                                 <div class="product_card__admin_buttons">
                                     <a href="{{ route('products.edit', ['product' => $item->id]) }}" class="button">
                                         Edit
