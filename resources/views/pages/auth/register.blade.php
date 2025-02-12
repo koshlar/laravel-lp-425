@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container">
-        <h1>Register page!</h1>
-        <form action="{{ route('register') }}" method="post">
+        <form class="form--default form--medium" action="{{ route('register') }}" method="post">
             @csrf
+            <h1>Register </h1>
             @include('components.Input', [
                 'name' => 'email',
                 'placeholder' => 'Email',

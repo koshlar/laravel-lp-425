@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="container">
-        <h1>Edit product page!</h1>
-        <form action="{{ route('products.update', ['product' => $product->id]) }}" method="post"
-            enctype="multipart/form-data">
+        <form class="form--default form--big" action="{{ route('products.update', ['product' => $product->id]) }}"
+            method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
+            <h1>Edit product </h1>
             @include('components.Input', [
                 'name' => 'cover',
                 'placeholder' => 'cover',

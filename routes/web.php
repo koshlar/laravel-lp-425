@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisterLoginController;
+use App\Http\Controllers\CartProductController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
-use PhpParser\Node\Expr\FuncCall;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +19,7 @@ use PhpParser\Node\Expr\FuncCall;
 
 Route::get('/', function () {
   return view('pages.home');
-});
+})->name('home');
 
 // Routes group для обработки авторизации 
 Route::controller(RegisterLoginController::class)
@@ -56,4 +56,14 @@ Route::controller(ProductController::class)
   ->group(function () {
     Route::get('/', 'index')->name('products.index');
     Route::get('/{product}', 'show')->name('products.show');
+  });
+
+Route::controller(CartProductController::class)
+  ->prefix('cart')
+  ->group(function () {
+    Route::get('/', 'index')->name('cart.index');
+    Route::post('/', 'store')->name('cart.store');
+    Route::patch('/add', 'add')->name('cart.add');
+    Route::patch('/remove', 'remove')->name('cart.remove');
+    Route::delete('/', 'destroy')->name('cart.destroy');
   });

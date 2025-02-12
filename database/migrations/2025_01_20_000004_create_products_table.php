@@ -18,9 +18,9 @@ return new class extends Migration
       $table->integer("price");
       $table->string("cover");
       $table->unsignedInteger("quantity");
-      $table->foreignId('product-category_id')
+      $table->foreignId('product_category_id')
         ->nullable()
-        ->constrained('product-categories')
+        ->constrained('product_categories')
         ->nullOnDelete();
       $table->timestamps();
     });

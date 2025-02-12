@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container">
-        <h1>Create product category page!</h1>
-        <form action="{{ route('product-categories.store') }}" method="post">
+        <form class="form--default form--big" action="{{ route('product-categories.store') }}" method="post">
             @csrf
+            <h1>Create product category</h1>
             @include('components.Input', [
                 'name' => 'name',
                 'placeholder' => 'Name',

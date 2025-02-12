@@ -2,9 +2,10 @@
 
 @section('content')
     <div class="container">
-        <h1>Create product page!</h1>
-        <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
+        <form class="form--default form--big" action="{{ route('products.store') }}" method="post"
+            enctype="multipart/form-data">
             @csrf
+            <h1>Create product</h1>
             @include('components.Input', [
                 'name' => 'cover',
                 'placeholder' => 'cover',

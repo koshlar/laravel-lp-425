@@ -11,7 +11,7 @@ class ProductController extends Controller
 
   public function index()
   {
-    return view('pages.products.catalog', ['products' => Product::all()]);
+    return view('pages.products.index', ['products' => Product::all()]);
   }
 
   public function show($id)
