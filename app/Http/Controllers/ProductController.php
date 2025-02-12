@@ -10,9 +10,15 @@ use Illuminate\Support\Facades\Storage;
 class ProductController extends Controller
 {
 
-  public function index()
+  public function index(Request $request)
   {
-    return view('pages.products.index', ['products' => Product::all()]);
+    $products = Product::query();
+
+    $product_category_id = $request->input('pci');
+    if (isset($product_category_id)) {
+      $products->where('product_category_id', $product_category_id);
+    }
+    return view('pages.products.index', ['products' => $products->get(), 'productCategories' => ProductCategory::all()]);
   }
 
   public function show($id)

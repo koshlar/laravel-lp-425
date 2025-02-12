@@ -9,7 +9,7 @@ class CartProductController extends Controller
 {
   public function index()
   {
-    return view('pages.cart.catalog', ['products' => CartProduct::query()->where('user_id', auth()->user()->id)->get()]);
+    return view('pages.cart.index', ['products' => CartProduct::where('user_id', auth()->user()->id)->get()]);
   }
 
   public function store(Request $request)

@@ -116,12 +116,6 @@ h2 {
   margin-top: 2rem;
 }
 
-.catalog__title {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-
 .catalog {
   margin-top: 3rem;
 }
@@ -152,4 +146,21 @@ h1+.input_container {
 
 .form--default button[type="submit"] {
   width: 100%;
+}
+
+.catalog__select {
+  width: 250px !important;
+}
+
+.catalog__headline_buttons {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.catalog__title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

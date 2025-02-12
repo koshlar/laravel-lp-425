@@ -12,7 +12,7 @@
             </div>
             <div class="header__user_buttons">
                 @auth
-                    <h2></h2>
+                    <a href="{{ route('cart.index') }}" class="button">Cart</a>
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
                         <button type="submit">Logout</button>

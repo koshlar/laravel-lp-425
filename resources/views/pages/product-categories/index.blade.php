@@ -14,11 +14,11 @@
                     <article class="product_card">
                         <p class="product_card__title">{{ $item->name }}</p>
                         <div class="product_card__admin_buttons">
-                            <a href="{{ route('product-categories.edit', ['product-category' => $item->id]) }}"
+                            <a href="{{ route('product-categories.edit', ['product_category' => $item->id]) }}"
                                 class="button">
                                 Edit
                             </a>
-                            <form action="{{ route('product-categories.destroy', ['product-category' => $item->id]) }}"
+                            <form action="{{ route('product-categories.destroy', ['product_category' => $item->id]) }}"
                                 method="post">
                                 @csrf
                                 @method('DELETE')

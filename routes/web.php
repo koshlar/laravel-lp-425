@@ -60,6 +60,7 @@ Route::controller(ProductController::class)
 
 Route::controller(CartProductController::class)
   ->prefix('cart')
+  ->middleware('auth')
   ->group(function () {
     Route::get('/', 'index')->name('cart.index');
     Route::post('/', 'store')->name('cart.store');
