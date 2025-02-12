@@ -1,10 +1,9 @@
-<center>
-    <img height="60" src="https://github.com/user-attachments/assets/f6117c4e-2738-4bb8-b250-e775008058e8" alt="Laravel shop">
-</center>
+<img height="60" src="https://github.com/user-attachments/assets/f6117c4e-2738-4bb8-b250-e775008058e8" alt="Laravel shop">
 
 Микро-проект для демонстрации реализации функционала
 
 ## Что включено
+
 1) Authorization/Authentication.
 2) Товары:
     1) CRUD.
