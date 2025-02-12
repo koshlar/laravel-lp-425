@@ -20,7 +20,7 @@ composer update
 2) Скопируйте и переименуйте файл `.env.example` в `.env`
 3) Укажите свои данные для подключения к БД:
 
-```
+```.env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -28,3 +28,10 @@ DB_DATABASE=ВАШЕ_НАЗВАНИЕ_БД
 DB_USERNAME=root
 DB_PASSWORD=ВАШ_ПАРОЛЬ
 ```
+
+4) Сгенерите ключ приложения:
+
+```bash
+php artisan key:generate
+```
+
