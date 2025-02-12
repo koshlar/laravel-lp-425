@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,7 +22,7 @@ class ProductController extends Controller
 
   public function create()
   {
-    return view('pages.products.create');
+    return view('pages.products.create', ['productCategories' => ProductCategory::all()]);
   }
 
   public function store(Request $request)
@@ -31,18 +32,13 @@ class ProductController extends Controller
       'name' => 'required|string|min:2',
       'price' => 'required|numeric|between:0,1000000',
       'description' => 'nullable|string|max:1500',
-      // 'product-category_id' => 'required|min:6|string|max:16|confirmed',
+      'product_category_id' => 'required|string|exists:product_categories,id',
     ]);
 
     if ($request->hasFile('cover')) {
-      if (!Storage::disk("public")->exists('images/products')) {
-        Storage::disk("public")->makeDirectory('images/products');
-      }
+      Storage::disk("public")->makeDirectory('images/products');
 
-      $image = $request->file('cover');
-      $filename = uniqid() . '.' . $image->extension();
-
-      Storage::disk("public")->put("images/products/" . $filename, file_get_contents($image));
+      $filename = basename(Storage::disk("public")->put("images/products/", file_get_contents($request->file('cover'))));
     }
 
     Product::create([
@@ -50,8 +46,8 @@ class ProductController extends Controller
       'name' => $request->name,
       'price' => $request->price,
       'description' => $request->description,
-      'quantity' => 1,
-      // 'product-category_id' => $request->product-category_id,
+      'count' => 1,
+      'product_category_id' => $request->product_category_id,
     ]);
 
     return redirect(route('products.index'));
@@ -59,43 +55,42 @@ class ProductController extends Controller
 
   public function edit($id)
   {
-    return view('pages.products.edit', ['product' => Product::findOrFail($id)]);
+    return view('pages.products.edit', ['product' => Product::findOrFail($id), 'productCategories' => ProductCategory::all()]);
   }
 
   public function update(Request $request, $id)
   {
     $request->validate([
-      'cover' => 'required|image|mimes:png,jpg,jpeg,webp|max:3000',
+      'cover' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:3000',
       'name' => 'required|string|min:2',
       'price' => 'required|numeric|between:0,1000000',
       'description' => 'nullable|string|max:1500',
-      // 'product-category_id' => 'required|min:6|string|max:16|confirmed',
+      'product_category_id' => 'required|string|exists:product_categories,id',
     ]);
 
     $product = Product::findOrFail($id);
 
     if ($request->hasFile('cover')) {
-      if (!Storage::disk("public")->exists('images/products')) {
-        Storage::disk("public")->makeDirectory('images/products');
-      }
+      Storage::disk("public")->makeDirectory('images/products');
+      // if (!Storage::disk("public")->exists('images/products')) {
+      //   Storage::disk("public")->makeDirectory('images/products');
+      // }
 
       if (Storage::disk('public')->exists('images/products/' . $product->cover)) {
         Storage::disk('public')->delete('images/products/' . $product->cover);
       }
 
-      $image = $request->file('cover');
-      $filename = uniqid() . '.' . $image->extension();
+      $filename = basename(Storage::disk("public")->put("images/products/", file_get_contents($request->file('cover'))));
 
-      Storage::disk("public")->put("images/products/" . $filename, file_get_contents($image));
+      $product->update(['cover' => $filename]);
     }
 
     $product->update([
-      'cover' => $filename,
       'name' => $request->name,
       'price' => $request->price,
       'description' => $request->description,
-      'quantity' => 1,
-      // 'product-category_id' => $request->product-category_id,
+      'count' => 1,
+      'product_category_id' => $request->product_category_id,
     ]);
 
     return redirect(route('products.index'));

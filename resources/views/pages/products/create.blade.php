@@ -6,27 +6,32 @@
             enctype="multipart/form-data">
             @csrf
             <h1>Create product</h1>
-            @include('components.Input', [
+            @include('components.inputs.Input', [
                 'name' => 'cover',
                 'placeholder' => 'cover',
                 'type' => 'file',
             ])
-            @include('components.Input', [
+            @include('components.inputs.Input', [
                 'name' => 'name',
                 'placeholder' => 'Name',
-                'value' => old('name'),
             ])
-            @include('components.Input', [
+            @include('components.inputs.Input', [
                 'name' => 'price',
                 'placeholder' => 'Price',
                 'type' => 'number',
-                'value' => old('price'),
             ])
-            @include('components.Input', [
+            @include('components.inputs.Textarea', [
                 'name' => 'description',
                 'placeholder' => 'Description',
-                'value' => old('description'),
             ])
+            @component('components.inputs.Select', [
+                'name' => 'product_category_id',
+                'placeholder' => 'Product category',
+                'titleKey' => 'name',
+                'valueKey' => 'id',
+                'options' => $productCategories,
+            ])
+            @endcomponent
             <button type="submit">Create product</button>
         </form>
     </div>

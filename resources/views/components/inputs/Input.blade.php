@@ -1,7 +1,5 @@
-<div class="input_container">
+@component('components.inputs.InputContainer')
     <input type="{{ $type ?? 'text' }}" name="{{ $name }}" value="{{ old($name, $value ?? '') }}"
         placeholder="{{ $placeholder ?? '' }}">
-    @error($name)
-        <p class="error">{{ $message }}</p>
-    @enderror
-</div>
+    @include('components.inputs.ErrorMessage', ['name' => $name])
+@endcomponent

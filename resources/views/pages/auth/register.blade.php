@@ -5,18 +5,18 @@
         <form class="form--default form--medium" action="{{ route('register') }}" method="post">
             @csrf
             <h1>Register </h1>
-            @include('components.Input', [
+            @include('components.inputs.Input', [
                 'name' => 'email',
                 'placeholder' => 'Email',
                 'type' => 'email',
                 'value' => old('email'),
             ])
-            @include('components.Input', [
+            @include('components.inputs.Input', [
                 'name' => 'password',
                 'placeholder' => 'Password',
                 'type' => 'password',
             ])
-            @include('components.Input', [
+            @include('components.inputs.Input', [
                 'name' => 'password_confirmation',
                 'placeholder' => 'Password again',
                 'type' => 'password',

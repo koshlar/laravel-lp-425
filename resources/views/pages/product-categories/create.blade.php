@@ -5,7 +5,7 @@
         <form class="form--default form--big" action="{{ route('product-categories.store') }}" method="post">
             @csrf
             <h1>Create product category</h1>
-            @include('components.Input', [
+            @include('components.inputs.Input', [
                 'name' => 'name',
                 'placeholder' => 'Name',
             ])

@@ -17,7 +17,7 @@ return new class extends Migration
       $table->longText("description");
       $table->integer("price");
       $table->string("cover");
-      $table->unsignedInteger("quantity");
+      $table->unsignedInteger("count");
       $table->foreignId('product_category_id')
         ->nullable()
         ->constrained('product_categories')

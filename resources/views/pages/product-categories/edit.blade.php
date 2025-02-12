@@ -7,7 +7,7 @@
             @csrf
             @method('PUT')
             <h1>Edit product category page</h1>
-            @include('components.Input', [
+            @include('components.inputs.Input', [
                 'name' => 'name',
                 'placeholder' => 'Name',
                 'value' => old('name') ?? $productCategory->name,

@@ -5,13 +5,13 @@
         <form class="form--default form--medium" action="{{ route('login') }}" method="post">
             @csrf
             <h1>Login</h1>
-            @include('components.Input', [
+            @include('components.inputs.Input', [
                 'name' => 'email',
                 'placeholder' => 'Email',
                 'type' => 'email',
                 'value' => old('email'),
             ])
-            @include('components.Input', [
+            @include('components.inputs.Input', [
                 'name' => 'password',
                 'placeholder' => 'Password',
                 'type' => 'password',

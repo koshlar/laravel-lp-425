@@ -77,7 +77,9 @@ header {
   margin-top: 0.5rem;
 }
 
-input {
+input,
+textarea,
+select {
   padding: 0.5rem 0.7rem;
   border: 1px solid #1f1f1f;
   background: none;
@@ -85,8 +87,14 @@ input {
   outline: none;
 }
 
-input:focus {
+input:focus,
+textarea:focus,
+select:focus {
   border: 1px solid #454545;
+}
+
+textarea {
+  resize: vertical;
 }
 
 h1 {
